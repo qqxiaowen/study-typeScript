@@ -63,6 +63,37 @@ class Snake {
     }
   }
 
+    // 判断是否掉头
+    isTurnRound(key: string, direction: string): boolean {
+      if (this.body.length ===  1) { return false; }; // 蛇长度为1时不判断
+      switch(key) {
+        case 'ArrowUp':
+        case 'Up':
+          if (['ArrowDown', 'Down'].includes(direction)) {
+            return true;
+          }
+          return false;
+        case 'ArrowRight':
+        case 'Right':
+          if (['ArrowLeft', 'Left'].includes(direction)) {
+            return true;
+          }
+          return false;
+        case 'ArrowDown':
+        case 'Down':
+          if (['ArrowUp', 'Up'].includes(direction)) {
+            return true;
+          }
+          return false;
+        case 'ArrowLeft':
+        case 'Left':
+          if (['ArrowRight', 'Right'].includes(direction)) {
+            return true;
+          }
+          return false;
+      }
+    }
+
   // 判断蛇是否撞到自己
   checkoutCollideSlef() {
     for (let i = 1; i < this.body.length; i++) {

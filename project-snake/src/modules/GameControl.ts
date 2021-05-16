@@ -25,7 +25,7 @@ class GameControl{
   constructor() {
     this.snake = new Snake();
     this.food = new Food();
-    this.scorepanel = new Scorepanel(20, 2);
+    this.scorepanel = new Scorepanel(10, 2);
     this.button = document.querySelector('.button-box');
     this.init();
   }
@@ -44,39 +44,8 @@ class GameControl{
 
   // 键盘事件
   handleKeydown = (e: KeyboardEvent) => {
-    if (keyboardKey.includes(e.key) && !this.isTurnRound(e.key)) {
+    if (keyboardKey.includes(e.key) && !this.snake.isTurnRound(e.key, this.direction)) {
       this.direction = e.key;
-    }
-  }
-
-  // 判断是否掉头
-  isTurnRound(key: string): boolean {
-    if (this.snake.body.length ===  1) { return false; }; // 蛇长度为1时不判断
-    switch(key) {
-      case 'ArrowUp':
-      case 'Up':
-        if (['ArrowDown', 'Down'].includes(this.direction)) {
-          return true;
-        }
-        return false;
-      case 'ArrowRight':
-      case 'Right':
-        if (['ArrowLeft', 'Left'].includes(this.direction)) {
-          return true;
-        }
-        return false;
-      case 'ArrowDown':
-      case 'Down':
-        if (['ArrowUp', 'Up'].includes(this.direction)) {
-          return true;
-        }
-        return false;
-      case 'ArrowLeft':
-      case 'Left':
-        if (['ArrowRight', 'Right'].includes(this.direction)) {
-          return true;
-        }
-        return false;
     }
   }
 
